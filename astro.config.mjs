@@ -39,6 +39,8 @@ export default defineConfig({
           items: [
             { label: 'init', slug: 'commands/init' },
             { label: 'record', slug: 'commands/record' },
+            { label: 'add', slug: 'commands/add' },
+            { label: 'status', slug: 'commands/status' },
             { label: 'commit', slug: 'commands/commit' },
             { label: 'log', slug: 'commands/log' },
             { label: 'show', slug: 'commands/show' },
