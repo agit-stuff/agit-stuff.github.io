@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  site: 'https://agit.dev',
+  site: 'https://agit-stuff.github.io',
+  base: '/agit-website',
   integrations: [
     starlight({
       title: 'AGIT',
