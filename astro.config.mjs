@@ -8,6 +8,7 @@ export default defineConfig({
       title: 'AGIT',
       logo: {
         src: './public/agit-logo.svg',
+        replacesTitle: true,
       },
       social: {
         github: 'https://github.com/agit-stuff/agit',

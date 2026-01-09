@@ -68,7 +68,7 @@ code {
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, var(--sl-color-accent), var(--sl-color-accent-high));
-  color: white;
+  color: #ffffff !important;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
@@ -81,16 +81,18 @@ code {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(127, 16, 174, 0.4);
   text-shadow: none;
+  color: #ffffff !important;
 }
 
 .cta-button.secondary {
   background: transparent;
   border: 2px solid var(--sl-color-accent);
-  color: var(--sl-color-accent-high);
+  color: var(--sl-color-accent-high) !important;
 }
 
 .cta-button.secondary:hover {
   background: rgba(127, 16, 174, 0.1);
+  color: var(--sl-color-accent-high) !important;
 }
 
 /* Feature cards */
@@ -253,23 +255,14 @@ code {
 .hero {
   text-align: center;
   padding: 4rem 2rem;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .hero-logo {
-  width: 150px;
+  width: 200px;
   height: auto;
-  margin-bottom: 2rem;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--sl-color-white), var(--sl-color-accent-high));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 1.5rem;
 }
 
 .hero-tagline {
@@ -293,11 +286,25 @@ code {
   flex-wrap: wrap;
 }
 
+/* Main content wrapper */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Terminal on homepage */
+.hero + .terminal {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
 /* Features section */
 .features {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .features h2 {
