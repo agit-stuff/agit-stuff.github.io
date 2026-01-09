@@ -257,6 +257,37 @@ code {
   padding: 4rem 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* Homepage wrapper - centers all content */
+.homepage-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+/* Fix Starlight splash page centering */
+[data-page-type="splash"] main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+[data-page-type="splash"] .sl-container {
+  max-width: 100%;
+  width: 100%;
+}
+
+[data-page-type="splash"] article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-logo {
@@ -294,9 +325,27 @@ code {
 }
 
 /* Terminal on homepage */
-.hero + .terminal {
+.terminal {
   max-width: 800px;
   margin: 0 auto 3rem;
+  width: 100%;
+}
+
+.terminal-small {
+  max-width: 600px;
+}
+
+/* Steps list */
+.steps-list {
+  text-align: left;
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+/* CTA wrapper */
+.cta-wrapper {
+  margin-top: 2rem;
+  text-align: center;
 }
 
 /* Features section */
@@ -305,6 +354,7 @@ code {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  width: 100%;
 }
 
 .features h2 {
