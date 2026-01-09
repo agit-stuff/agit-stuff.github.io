@@ -14,6 +14,9 @@ export default defineConfig({
         github: 'https://github.com/agit-stuff/agit',
       },
       customCss: ['./src/styles/global.css'],
+      components: {
+        Header: './src/components/Header.astro',
+      },
       sidebar: [
         {
           label: 'Getting Started',
