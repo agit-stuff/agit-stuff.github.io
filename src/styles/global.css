@@ -423,6 +423,22 @@ main {
   text-align: center;
 }
 
+/* Left-align main terminal ($ agit init demo) */
+.homepage-wrapper > .terminal {
+  align-self: flex-start;
+  margin-left: 2rem;
+}
+
+/* Left-align Quick Install section */
+.features .terminal-small {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.features:has(.terminal-small) h2 {
+  text-align: left;
+}
+
 /* Header navigation links */
 .header-nav {
   display: flex;
