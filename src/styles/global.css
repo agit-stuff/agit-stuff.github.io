@@ -479,7 +479,7 @@ site-search {
 site-search button[data-open-modal] {
   padding: 0.5rem 2rem !important;
   font-size: 1rem !important;
-  min-width: 200px !important;
+  min-width: 600px !important;
 }
 
 site-search button[data-open-modal] svg {
