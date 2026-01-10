@@ -57,7 +57,7 @@ Log a thought to the staging area.
 | Name | Type | Description |
 |------|------|-------------|
 | `role` | string | `"user"` or `"ai"` |
-| `category` | string | `"intent"`, `"reasoning"`, etc. |
+| `category` | string | `"intent"`, `"reasoning"`, `"error"` |
 | `content` | string | The thought content |
 
 **Example:**
@@ -83,6 +83,98 @@ Get the current AGIT status.
 - Staging area entry count
 - Recent entries
 - Current branch
+
+### `agit_get_file_history`
+
+Get neural commit history for a specific file. Useful for understanding past decisions about a file before modifying it.
+
+**Parameters:**
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `filepath` | string | required | Path to the file (e.g., `src/auth.rs`) |
+| `limit` | number | 3 | Maximum number of commits to return |
+
+**Example:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "agit_get_file_history",
+    "arguments": {
+      "filepath": "src/auth.rs",
+      "limit": 5
+    }
+  }
+}
+```
+
+**Returns:**
+```
+File history for 'src/auth.rs':
+
+1. [abc1234] Fixed authentication bug
+2. [def5678] Updated error handling
+3. [ghi9012] Refactored main function
+```
+
+### `agit_get_relevant_context`
+
+Search past reasoning for relevant context.
+
+**Parameters:**
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `query` | string | required | Search query |
+| `limit` | number | 5 | Maximum results |
+
+**Example:**
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "agit_get_relevant_context",
+    "arguments": {
+      "query": "authentication",
+      "limit": 3
+    }
+  }
+}
+```
+
+### `agit_read_roadmap`
+
+Read project goals and roadmap from AGIT metadata.
+
+### `agit_get_recent_summaries`
+
+Get recent commit summaries to understand recent changes.
+
+**Parameters:**
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `count` | number | 5 | Number of recent summaries |
+
+## Auto-Context Injection
+
+Configure your AI to automatically retrieve file history before modifying files. Add this to your `CLAUDE.md`:
+
+```markdown
+<system_protocol>
+  <critical_rule id="CONTEXT_INJECTION">
+    <status>BLOCKING</status>
+    <trigger>FILE_MODIFICATION</trigger>
+    <instruction>
+      BEFORE writing to any non-empty file, you MUST call:
+      agit_get_file_history(filepath=...)
+      
+      Review the returned history to ensure your changes
+      do not regress previous decisions.
+    </instruction>
+  </critical_rule>
+</system_protocol>
+```
+
+This ensures your AI understands the reasoning behind existing code before changing it.
 
 ## Starting the MCP Server
 
@@ -142,3 +234,4 @@ The MCP server:
 
 - [Set up Cursor](/guides/cursor-setup/)
 - [Set up Claude Code](/guides/claude-code-setup/)
+- [Search past reasoning](/commands/search/)

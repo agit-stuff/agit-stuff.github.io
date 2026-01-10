@@ -19,6 +19,8 @@ agit status -v
 2. **Staged context** - Thoughts frozen for next commit (after `agit add`)
 3. **Pending thoughts** - New thoughts waiting to be staged
 4. **Sync status** - Warning if Git and AGIT branches differ
+5. **Git state warnings** - Merge/rebase in progress
+6. **Conflict warnings** - External changes affecting your thoughts
 
 ## Options
 
@@ -90,6 +92,63 @@ Pending thoughts: 1
   (will be included in next "agit add")
 ```
 
+## Git State Warnings
+
+### Merge in Progress
+
+When Git is in a merge state, AGIT enters read-only mode:
+
+```bash
+agit status
+```
+
+Output:
+```
+⚠️  Merge in progress. Agit is in read-only mode.
+   Resolve conflicts and run 'git merge --continue' first.
+
+On branch main
+...
+```
+
+### Rebase in Progress
+
+When Git is rebasing:
+
+```
+⚠️  Rebase in progress. Agit is in read-only mode.
+   Resolve conflicts and run 'git rebase --continue' first.
+
+On branch main
+...
+```
+
+During these states, `agit record`, `agit add`, and `agit commit` are blocked. See [Git Resilience](/guides/git-resilience/) for details.
+
+## Conflict Warnings
+
+If external Git commits have modified files mentioned in your pending thoughts:
+
+```bash
+agit status
+```
+
+Output:
+```
+On branch main
+
+⚠️  Context conflict detected:
+   External commits touched files mentioned in your thoughts:
+   - src/auth.rs
+
+   Use 'agit commit --force' to proceed, or 'agit reset' to clear thoughts.
+
+Pending thoughts: 1
+  (will be included in next "agit add")
+```
+
+This protects against "hallucinated" context where your recorded reasoning no longer matches the code state.
+
 ## Workflow
 
 ```bash
@@ -120,3 +179,4 @@ agit status
 - [agit add](/commands/add/) - Stage files and freeze context
 - [agit record](/commands/record/) - Manually record thoughts
 - [agit commit](/commands/commit/) - Create commit with staged context
+- [Git Resilience](/guides/git-resilience/) - How AGIT handles conflicts

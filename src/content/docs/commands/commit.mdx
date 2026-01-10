@@ -29,6 +29,7 @@ Creates both a git commit and a neural commit:
 | `-m`, `--message` | Yes | Commit message |
 | `--amend` | No | Amend the previous neural commit |
 | `--edit-summary` | No | Edit the synthesized summary before committing |
+| `--force` | No | Override semantic conflict detection |
 
 ## Examples
 
@@ -79,6 +80,51 @@ Intent: Also add rate limiting. Plan: Use express-rate-limit middleware.
 
 (Uses the *last* intent and reasoning)
 
+## Semantic Conflict Detection
+
+AGIT protects against "hallucinated" commits by detecting conflicts between your pending thoughts and external changes.
+
+### How It Works
+
+Before committing, AGIT checks:
+1. **Ghost commits**: Git commits made outside AGIT since your last neural commit
+2. **File references**: Files mentioned in your pending thoughts
+3. **Overlap**: Whether ghost commits touched files in your thoughts
+
+### Safe vs Unsafe Scenarios
+
+**Safe** (proceeds automatically):
+```
+Ghost commit modified: README.md
+Your thought mentions: src/auth.rs
+→ No overlap, commit proceeds
+```
+
+**Unsafe** (blocks with warning):
+```
+Ghost commit modified: src/auth.rs
+Your thought mentions: "fixing auth.rs"
+→ File overlap detected
+```
+
+### Override with --force
+
+If you're confident the conflict is fine:
+
+```bash
+agit commit -m "My changes" --force
+```
+
+### Conflict Error
+
+```
+Context conflict: external changes touched files in your pending thoughts.
+Conflicting files: src/auth.rs
+Use --force to commit anyway, or clear pending thoughts with 'agit reset'.
+```
+
+**Solution**: Review the conflict, then either use `--force` or clear your thoughts.
+
 ## Commit Object Structure
 
 Neural commits are stored as JSON:
@@ -120,6 +166,14 @@ Commit message required. Use -m or --message
 
 **Solution**: Provide a message with `-m "Your message"`.
 
+### Merge/Rebase in Progress
+
+```
+⚠️  Merge in progress. Please resolve conflicts and finish the Merge before adding neural memories.
+```
+
+**Solution**: Complete the merge/rebase before committing to AGIT. See [Git Resilience](/guides/git-resilience/).
+
 ## Best Practices
 
 1. **Commit after logical units**: Use `agit commit` to create both git and neural commits in one step
@@ -132,3 +186,4 @@ Commit message required. Use -m or --message
 - [agit status](/commands/status/) - Check staging area before committing
 - [agit log](/commands/log/) - View commit history
 - [agit show](/commands/show/) - View full commit details
+- [Git Resilience](/guides/git-resilience/) - How AGIT handles conflicts

@@ -30,6 +30,7 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'MCP Integration', slug: 'guides/mcp-integration' },
+            { label: 'Git Resilience', slug: 'guides/git-resilience' },
             { label: 'Cursor Setup', slug: 'guides/cursor-setup' },
             { label: 'Claude Code Setup', slug: 'guides/claude-code-setup' },
           ],
@@ -44,6 +45,7 @@ export default defineConfig({
             { label: 'commit', slug: 'commands/commit' },
             { label: 'log', slug: 'commands/log' },
             { label: 'show', slug: 'commands/show' },
+            { label: 'search', slug: 'commands/search' },
           ],
         },
         {
@@ -51,6 +53,7 @@ export default defineConfig({
           items: [
             { label: 'Architecture', slug: 'reference/architecture' },
             { label: 'Philosophy', slug: 'reference/philosophy' },
+            { label: 'Changelog', slug: 'reference/changelog' },
           ],
         },
       ],
