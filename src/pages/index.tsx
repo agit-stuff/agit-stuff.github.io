@@ -24,6 +24,14 @@ function HomepageHeader() {
             View on GitHub
           </Link>
         </div>
+        <div className={styles.integrations}>
+          <span className={styles.integrationsLabel}>Works with</span>
+          <div className={styles.integrationsBadges}>
+            <img src="/img/claude-code.svg" alt="Claude Code" className={styles.integrationIcon} title="Claude Code" />
+            <img src="/img/cursor.png" alt="Cursor" className={styles.integrationIcon} title="Cursor" />
+            <img src="/img/githubcopilot.png" alt="GitHub Copilot" className={styles.integrationIcon} title="GitHub Copilot" />
+          </div>
+        </div>
       </div>
     </header>
   );

@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'AGIT',
-  tagline: 'AI-Native Git Wrapper',
+  title: 'agit',
+  tagline: 'Code Context Management',
   favicon: 'img/favicon.ico',
 
   url: 'https://agit-ccm.com',
@@ -52,8 +52,7 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docs',
+          to: '/docs/getting-started/quick-start',
           position: 'left',
           label: 'Docs',
         },
